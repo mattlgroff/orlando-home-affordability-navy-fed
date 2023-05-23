@@ -74,34 +74,40 @@ export default function Home({ interestRatesFromNavyFederal }: { interestRatesFr
 
                 <div className="flex flex-col md:flex-row md:justify-around p-10">
                     <div className="flex flex-col">
-                        <label className="block mb-2 font-bold">Home Price</label>
-                        <input
-                            className="block mb-4 p-2 border rounded w-64"
-                            type="text"
-                            value={homePrice.toLocaleString()} // add thousand separators
-                            onChange={e => {
-                                if (e.target.value === '' || e.target.value == '0') {
-                                    return setHomePrice(0);
-                                }
+                        <label className="block mb-2 font-bold">
+                            Home Price
+                            <input
+                                name="home-price"
+                                className="block mb-4 p-2 border rounded w-64"
+                                type="text"
+                                value={homePrice.toLocaleString()} // add thousand separators
+                                onChange={e => {
+                                    if (e.target.value === '' || e.target.value == '0') {
+                                        return setHomePrice(0);
+                                    }
 
-                                setHomePrice(parseInt(e.target.value.replace(/,/g, '')));
-                            }}
-                        />
+                                    setHomePrice(parseInt(e.target.value.replace(/,/g, '')));
+                                }}
+                            />
+                        </label>
 
-                        <label className="block mb-2 font-bold">Down Payment Percentage</label>
-                        <input
-                            className="block mb-4 p-2 border rounded w-64"
-                            type="text"
-                            min="5"
-                            value={downPaymentPercent}
-                            onChange={e => {
-                                if (e.target.value === '' || e.target.value == '0') {
-                                    return setDownPaymentPercent(0);
-                                }
+                        <label className="block mb-2 font-bold">
+                            Down Payment Percentage
+                            <input
+                                name="down-payment"
+                                className="block mb-4 p-2 border rounded w-64"
+                                type="number" // consider using "number" type instead of "text"
+                                min="5"
+                                value={downPaymentPercent}
+                                onChange={e => {
+                                    if (e.target.value === '' || e.target.value == '0') {
+                                        return setDownPaymentPercent(0);
+                                    }
 
-                                setDownPaymentPercent(parseInt(e.target.value));
-                            }}
-                        />
+                                    setDownPaymentPercent(parseInt(e.target.value));
+                                }}
+                            />
+                        </label>
 
                         <label className="block mb-2 font-bold">Loan Term</label>
                         <select
