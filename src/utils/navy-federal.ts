@@ -1,9 +1,15 @@
 import { InterestRate } from '@deps/types';
-import puppeteer from 'puppeteer-core';
+import chromium from 'chrome-aws-lambda';
 
 export async function fetchNavyFederal(): Promise<InterestRate[]> {
     try {
-        const browser = await puppeteer.launch({ headless: true });
+        const browser = await chromium.puppeteer.launch({
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath,
+            headless: chromium.headless,
+            ignoreHTTPSErrors: true,
+        });
         const page = await browser.newPage();
         await page.goto('https://www.navyfederal.org/loans-cards/mortgage/mortgage-rates/conventional-fixed-rate-mortgages.html');
 
