@@ -1,6 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-}
+    reactStrictMode: true,
+    webpack: (config, { isServer }) => {
+      if (!isServer) {
+          // don't resolve 'fs' module on the client to prevent this error on build --> Error: Can't resolve 'fs'
+          config.resolve.fallback = {
+              fs: false,
+              module: false,
+              tls: false,
+              net: false,
+              readline: false,
+              child_process: false,
+              'import-fresh': false,
+              'yargs-parser': false,
+              yargs: false,
+          }
+      }
 
-module.exports = nextConfig
+      return config;
+  }
+};
+
+module.exports = nextConfig;
