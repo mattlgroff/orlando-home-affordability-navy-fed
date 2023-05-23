@@ -1,5 +1,5 @@
 import { InterestRate } from '@deps/types';
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
 
 export async function fetchNavyFederal(): Promise<InterestRate[]> {
     try {
